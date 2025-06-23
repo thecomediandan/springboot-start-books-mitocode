@@ -12,14 +12,15 @@ Este proyecto muestra simples rasgos la creación de un proyecto CRUD básico co
 - Por defecto en Springboot al retornar una instancia de un objeto POJO devuelve un JSON del mismo al retornar el valor en un RestController.
 
 - Para hacer que se usen formatos como el XML se debría usar librerías externas como:
-´´´xml
+
+```xml
 <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml -->
 <dependency>
     <groupId>com.fasterxml.jackson.dataformat</groupId>
     <artifactId>jackson-dataformat-xml</artifactId>
     <version>2.19.1</version>
 </dependency>
-´´´
+```
 Para usarlo, en una modelo se debería usar la notación @JacksonXmlRootElement
 
 - Inyección de dependencias:
@@ -30,30 +31,30 @@ Para usarlo, en una modelo se debería usar la notación @JacksonXmlRootElement
 
     - Para que Spring JPA funcione necesita de conectarse a una base de datos y manejar una especificación que use JPA como Hibernate por ejemplo. Necesitaremos utilizar una librería conocida en Spring como:
 
-    ´´´xml
+    ```xml
     <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-data-jpa</artifactId>
         <version>3.5.3</version>
     </dependency>
-    ´´´
+    ```
     - Tambien necesitaremos un conector a un tipo de base de datos como PostgreSQL, MySQL, etc. Necesitaremos otra dependencia para instalar este conector:
 
-    ´´´
+    ```xml
     <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
     <dependency>
         <groupId>org.postgresql</groupId>
         <artifactId>postgresql</artifactId>
         <version>42.7.7</version>
     </dependency>
-    ´´´
+    ```
 
     Ahora si nuestas configuraciones en el archivo de application.properties surtirán efecto en cuanto se cree una base de datos y se configure clases con referencia a tablas en este caso a Entidades mediante JPA.
 
     - Vamos a crear algunas Categorias para empezar dado la relacion de las tablas creada entre Book y Category (N:1):
 
-    ´´´json
+    ```json
     {
         "name": "Drama"
     }
@@ -69,11 +70,11 @@ Para usarlo, en una modelo se debería usar la notación @JacksonXmlRootElement
     {
         "name": "Novela"
     }
-    ´´´
+    ```
 
     - Luego podemos agregar libros:
 
-    ´´´json
+    ```json
     {
     	"id": 1,
     	"title": "Libro 1",
@@ -106,23 +107,23 @@ Para usarlo, en una modelo se debería usar la notación @JacksonXmlRootElement
     		"id": 4
     	}
     }
-    ´´´
+    ```
 
 - Para el tema de seguridad necesitaremos una dependencia para bloquear los endpoints con un usuario y contraseña:
 
-´´´xml
+```xml
 <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-security</artifactId>
     <version>3.5.3</version>
 </dependency>
-´´´
+```
 
 Por defecto se nos aplica una seguridad basica, donde el usuario es 'user' y la contraseña se nos envia en la consola cuando se levanta el proyecto.
 Podemos crear usuarios en memoria y base de datos, para la base de datos agregaremos los siguientes usuarios en la base de datos:
 
-´´´sql
+```sql
 -- Para consultar los empleados
 select * from employee e;  
 -- Para eliminar usuarios
@@ -131,7 +132,7 @@ delete from employee e where e.id = 1;
 -- Pagina para generar hash con bcrypt: https://bcrypt-generator.com/
 insert into employee(username, password, rol) values ('user', '$2a$12$KgyCphgV1ofw9Fyps6Hm.eSlZRGwJ1sAhPICv3yhJQQ7.1zXelnkK', 'USER');
 insert into employee(username, password, rol) values ('admin', '$2a$12$KgyCphgV1ofw9Fyps6Hm.eSlZRGwJ1sAhPICv3yhJQQ7.1zXelnkK', 'ADMIN');
-´´´
+```
 ## Cosas siguientes que probar:
 - Seguridad de sesiones mediante JWT
 - Despliegue en la nube
