@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres_db_spring
+    restart: always
+    environment:
+      POSTGRES_DB: mitocode_spring_books
+      POSTGRES_USER: ardadev
+      POSTGRES_PASSWORD: ardadev
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
